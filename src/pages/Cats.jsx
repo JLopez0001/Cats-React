@@ -19,7 +19,7 @@ function Cats() {
       <h1>All the Cats!</h1>
       <div className="cats-container">
         {cats.map((cat) => (
-          <Cat cat={cat} />
+          <Cat cat={cat} key={cat._id} />
         ))}
       </div>
     </div>
