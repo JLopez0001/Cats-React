@@ -1,7 +1,29 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { getCats } from "../services/cats.js";
+import Cat from "../components/Cat.jsx";
 
 function Cats() {
-  return <div>Cats</div>;
+  const [cats, setCats] = useState([]);
+
+  async function fetchCats() {
+    const allCats = await getCats();
+    setCats(allCats);
+  }
+
+  useEffect(() => {
+    fetchCats();
+  }, []);
+
+  return (
+    <div>
+      <h1>All the Cats!</h1>
+      <div className="cats-container">
+        {cats.map((cat) => (
+          <Cat cat={cat} />
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default Cats;
